@@ -1,0 +1,29 @@
+{
+  "name": "agenticthon-portal",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n web,api -c cyan,magenta \"vite\" \"node --watch server/dev-server.js\"",
+    "dev:web": "vite",
+    "dev:api": "node --watch server/dev-server.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "seed:admin": "node scripts/seed-admin.mjs"
+  },
+  "dependencies": {
+    "firebase": "^10.14.1",
+    "jspdf": "^4.2.1",
+    "nodemailer": "^6.9.16",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "vite": "^5.4.11"
+  }
+}

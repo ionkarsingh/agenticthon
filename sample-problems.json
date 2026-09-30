@@ -1,0 +1,17 @@
+[
+  {
+    "code": "PS-001",
+    "title": "Autonomous research assistant for literature review",
+    "description": "Build an agent that takes a research question, searches multiple sources, and returns a synthesised answer with citations.\n\nThe agent should decide on its own how many sources to consult and must clearly attribute every claim it makes. Teams are free to use any LLM provider.\n\nExpected output: a working demo, the source repository, and a short walkthrough of how the agent plans its search."
+  },
+  {
+    "code": "PS-002",
+    "title": "Multi-agent customer support triage",
+    "description": "Design a set of cooperating agents that classify incoming support tickets, route them to the right queue, and draft a first reply for a human to approve.\n\nThe system should handle at least four ticket categories and explain why it routed each ticket the way it did."
+  },
+  {
+    "code": "PS-003",
+    "title": "Meeting notes to action items",
+    "description": "Given a raw meeting transcript, produce a structured list of decisions, action items, and owners.\n\nThe solution must handle transcripts where speakers are not labelled, and should flag items where the owner is ambiguous rather than guessing."
+  }
+]

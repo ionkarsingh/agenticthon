@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import Layout from './components/Layout'
 import PortalLayout from './components/PortalLayout'
 import { useAuth } from './context/AuthContext'
@@ -32,50 +33,53 @@ export default function App() {
   const { user, ready: pReady } = useParticipant()
 
   return (
-    <Routes>
-      {/* Bare domain — where the QR code points. */}
-      <Route
-        path="/"
-        element={<Navigate to={pReady && user ? '/participant/portal' : '/participant/login'} replace />}
-      />
+    <>
+      <Routes>
+        {/* Bare domain — where the QR code points. */}
+        <Route
+          path="/"
+          element={<Navigate to={pReady && user ? '/participant/portal' : '/participant/login'} replace />}
+        />
 
-      {/* ------------------------- participant portal ------------------------ */}
-      <Route
-        path="/participant/login"
-        element={pReady && user ? <Navigate to="/participant/portal" replace /> : <PortalLogin />}
-      />
-      <Route
-        path="/participant/portal"
-        element={
-          <ParticipantOnly>
-            <PortalLayout />
-          </ParticipantOnly>
-        }
-      >
-        <Route index element={<PortalCategories />} />
-        <Route path="category/:categoryId" element={<CategoryProblems />} />
-        <Route path="problem/:problemId" element={<ProblemDetail />} />
-      </Route>
-      <Route path="/participant" element={<Navigate to="/participant/portal" replace />} />
+        {/* ------------------------- participant portal ------------------------ */}
+        <Route
+          path="/participant/login"
+          element={pReady && user ? <Navigate to="/participant/portal" replace /> : <PortalLogin />}
+        />
+        <Route
+          path="/participant/portal"
+          element={
+            <ParticipantOnly>
+              <PortalLayout />
+            </ParticipantOnly>
+          }
+        >
+          <Route index element={<PortalCategories />} />
+          <Route path="category/:categoryId" element={<CategoryProblems />} />
+          <Route path="problem/:problemId" element={<ProblemDetail />} />
+        </Route>
+        <Route path="/participant" element={<Navigate to="/participant/portal" replace />} />
 
-      {/* ------------------------------ admin -------------------------------- */}
-      <Route path="/admin/login" element={admin ? <Navigate to="/admin/dashboard" replace /> : <Login />} />
-      <Route
-        path="/admin"
-        element={
-          <AdminOnly>
-            <Layout />
-          </AdminOnly>
-        }
-      >
-        <Route index element={<Navigate to="/admin/dashboard" replace />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="problems" element={<Problems />} />
-        <Route path="teams" element={<Teams />} />
-        <Route path="settings" element={<Settings />} />
-      </Route>
+        {/* ------------------------------ admin -------------------------------- */}
+        <Route path="/admin/login" element={admin ? <Navigate to="/admin/dashboard" replace /> : <Login />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminOnly>
+              <Layout />
+            </AdminOnly>
+          }
+        >
+          <Route index element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="problems" element={<Problems />} />
+          <Route path="teams" element={<Teams />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
 
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+      <Analytics />
+    </>
   )
 }

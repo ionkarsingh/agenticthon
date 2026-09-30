@@ -12,6 +12,7 @@
     "seed:admin": "node scripts/seed-admin.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "firebase": "^10.14.1",
     "jspdf": "^4.2.1",
     "nodemailer": "^6.9.16",

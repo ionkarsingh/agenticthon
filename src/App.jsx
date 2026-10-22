@@ -3,6 +3,7 @@ import Layout from './components/Layout'
 import PortalLayout from './components/PortalLayout'
 import { useAuth } from './context/AuthContext'
 import { useParticipant } from './context/ParticipantContext'
+import Admins from './pages/Admins'
 import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 import Problems from './pages/Problems'
@@ -72,6 +73,7 @@ export default function App() {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="problems" element={<Problems />} />
         <Route path="teams" element={<Teams />} />
+        <Route path="admins" element={<Admins />} />
         <Route path="settings" element={<Settings />} />
       </Route>
 

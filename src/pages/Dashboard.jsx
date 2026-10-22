@@ -41,7 +41,7 @@ export default function Dashboard() {
       <div className="page-head">
         <div>
           <h1>Dashboard</h1>
-          <p>Live overview of the Agenticthon setup.</p>
+          <p>Live overview of the AIExplore setup.</p>
         </div>
         <div className="head-actions">
           <Link className="btn btn--ghost" to="/admin/problems">Problem statements</Link>

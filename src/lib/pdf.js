@@ -155,7 +155,7 @@ export function buildProblemPdf({ team, problem, categoryName }) {
     draw(`Page ${i} of ${pages}`, pageW - MARGIN, pageH - 34, { align: 'right' })
   }
 
-  return { pdf, downloadedAt, filename: `${team.code}_${problem.code}_Agenticthon2026.pdf` }
+  return { pdf, downloadedAt, filename: `${team.code}_${problem.code}_AIExplore2026.pdf` }
 }
 
 /** Builds the PDF and hands it to the browser as a download. */

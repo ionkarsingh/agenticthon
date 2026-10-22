@@ -118,6 +118,12 @@ code { font-family: "JetBrains Mono", ui-monospace, Consolas, monospace; font-si
   width: 30px; height: 30px; border-radius: 8px; cursor: pointer; line-height: 1;
 }
 .icon-btn:hover { color: var(--text); border-color: #3a3756; }
+.icon-btn--lg {
+  width: 40px; height: 40px; font-size: 20px; font-weight: 600;
+  background: var(--accent); border-color: var(--accent); color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.icon-btn--lg:hover { opacity: .9; color: #fff; border-color: var(--accent); }
 
 /* ------------------------------- surfaces -------------------------------- */
 

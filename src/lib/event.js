@@ -1,7 +1,7 @@
 // Single source of truth for the event details shown in the portal and the PDF.
 export const EVENT = {
-  name: 'Agenticthon 2026',
-  date: '1 October 2026',
+  name: 'AIExplore 2026',
+  date: '23 October 2026',
   venue: 'LAB 307',
   reportTime: '9:15 AM',
   startTime: '9:30 AM',

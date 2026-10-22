@@ -5,6 +5,7 @@ const NAV = [
   { to: '/admin/dashboard', label: 'Dashboard', icon: '▤' },
   { to: '/admin/problems', label: 'Problem Statements', icon: '◈' },
   { to: '/admin/teams', label: 'Teams / Accounts', icon: '◎' },
+  { to: '/admin/admins', label: 'Admin Management', icon: '▣' },
   { to: '/admin/settings', label: 'Settings', icon: '⚙' },
 ]
 
@@ -18,7 +19,7 @@ export default function Layout() {
         <div className="brand">
           <div className="brand__mark">A</div>
           <div>
-            <div className="brand__name">Agenticthon</div>
+            <div className="brand__name">AIExplore</div>
             <div className="brand__sub">Admin Console</div>
           </div>
         </div>

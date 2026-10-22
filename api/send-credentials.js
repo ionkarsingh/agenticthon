@@ -1,11 +1,19 @@
 import nodemailer from 'nodemailer'
 
 const EVENT = {
-  name: 'Agenticthon 2026',
-  date: '1 October 2026',
+  name: 'AIExplore 2026',
+  date: '23 October 2026',
   venue: 'LAB 307',
   reportTime: '9:15 AM',
   startTime: '9:30 AM',
+}
+
+function siteOrigin(req) {
+  const configured = String(process.env.SITE_URL || process.env.VITE_SITE_URL || '').trim().replace(/\/+$/, '')
+  if (configured) return configured
+  const host = req.headers['x-forwarded-host'] || req.headers.host
+  const proto = req.headers['x-forwarded-proto'] || 'https'
+  return host ? `${proto}://${host}` : ''
 }
 
 function transporter() {
@@ -48,7 +56,7 @@ function bullet(text) {
     </tr>`
 }
 
-export function buildCredentialEmail(team) {
+export function buildCredentialEmail(team, logoUrl) {
   const members = (Array.isArray(team.members) ? team.members : []).filter((m) => m && m.email)
   const rows = members.map((m, i) => credentialRow('Member ' + (i + 1), m.email, m.password)).join('')
 
@@ -60,14 +68,8 @@ export function buildCredentialEmail(team) {
     ...members.map((m, i) => `Member ${i + 1} -> Email: ${m.email} | Password: ${m.password}`),
     ``,
     `HOW YOU WILL LOG IN`,
-    `You will use these logins to access the portal tomorrow for ${EVENT.name}.`,
-    `A QR code to open the portal will be shared with you on WhatsApp on the morning`,
-    `of ${EVENT.date}. Scan that QR code, then sign in with your credentials above.`,
-    ``,
-    `REPORTING DETAILS — ${EVENT.date}`,
-    `- Reach ${EVENT.venue} by ${EVENT.reportTime}.`,
-    `- The competition starts at ${EVENT.startTime} sharp.`,
-    `- Bring your own laptops. Arrange them in advance.`,
+    `You will use these logins to access the portal on ${EVENT.date} and sign in with`,
+    `your credentials above.`,
     ``,
     `PROBLEM STATEMENT RULE`,
     `One team can select only ONE problem statement. Once your team selects it, it is`,
@@ -76,7 +78,6 @@ export function buildCredentialEmail(team) {
     `carefully. Both members share the same team problem statement.`,
     ``,
     `ATTENDANCE & JUDGEMENT`,
-    `- Attendance will be taken TWICE during the competition.`,
     `- Judgement will be conducted at the end.`,
     `- Your final attendance will be taken from the judgement attendance sheet only,`,
     `  so you must be present at the judgement round.`,
@@ -91,6 +92,13 @@ export function buildCredentialEmail(team) {
     <div style="max-width:580px;margin:0 auto;background:#ffffff;border:1px solid #e8e6f0;border-radius:16px;overflow:hidden;">
 
       <div style="background:linear-gradient(135deg,#4f3bd8,#8b5cf6);padding:28px 24px;">
+        ${
+          logoUrl
+            ? `<div style="background:#ffffff;display:inline-block;padding:7px 12px;border-radius:8px;margin-bottom:12px;">
+                 <img src="${esc(logoUrl)}" alt="GNA University" height="28" style="display:block;" />
+               </div>`
+            : ''
+        }
         <div style="font:700 22px/1.3 Arial,sans-serif;color:#ffffff;letter-spacing:-.01em;">${esc(EVENT.name)}</div>
         <div style="font:400 14px/1.5 Arial,sans-serif;color:#e4defb;margin-top:4px;">Your login credentials &amp; reporting details</div>
       </div>
@@ -109,23 +117,12 @@ export function buildCredentialEmail(team) {
         <div style="margin:22px 0 0;padding:16px 18px;background:#f6f4ff;border-left:3px solid #4f3bd8;border-radius:8px;">
           <div style="font:700 13px/1.4 Arial,sans-serif;color:#4f3bd8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">How you will log in</div>
           <p style="font:400 14px/1.7 Arial,sans-serif;color:#2b2840;margin:0;">
-            You will use these logins to access the portal <strong>tomorrow</strong> for ${esc(EVENT.name)}.
-            A <strong>QR code</strong> to open the portal will be shared with you on <strong>WhatsApp</strong>
-            on the morning of <strong>${esc(EVENT.date)}</strong>. Scan that QR code, then sign in with your
-            credentials above.
+            You will use these logins to access the portal on <strong>${esc(EVENT.date)}</strong> and sign
+            in with your credentials above.
           </p>
         </div>
 
-        <div style="margin:20px 0 0;padding:16px 18px;border:1px solid #e8e6f0;border-radius:10px;">
-          <div style="font:700 13px/1.4 Arial,sans-serif;color:#171525;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Reporting details &mdash; ${esc(EVENT.date)}</div>
-          <table cellpadding="0" cellspacing="0" width="100%">
-            ${bullet(`Reach <strong>${esc(EVENT.venue)}</strong> by <strong>${esc(EVENT.reportTime)}</strong>.`)}
-            ${bullet(`The competition starts at <strong>${esc(EVENT.startTime)} sharp</strong>.`)}
-            ${bullet(`<strong>Bring your own laptops</strong> &mdash; please arrange them in advance.`)}
-          </table>
-        </div>
-
-        <div style="margin:16px 0 0;padding:16px 18px;background:#fff8ed;border:1px solid #fbe3bd;border-radius:10px;">
+        <div style="margin:22px 0 0;padding:16px 18px;background:#fff8ed;border:1px solid #fbe3bd;border-radius:10px;">
           <div style="font:700 13px/1.4 Arial,sans-serif;color:#a16207;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">Problem statement rule</div>
           <p style="font:400 14px/1.7 Arial,sans-serif;color:#2b2840;margin:0;">
             One team can select only <strong>one</strong> problem statement. Once your team selects it, it is
@@ -137,7 +134,6 @@ export function buildCredentialEmail(team) {
         <div style="margin:16px 0 0;padding:16px 18px;border:1px solid #e8e6f0;border-radius:10px;">
           <div style="font:700 13px/1.4 Arial,sans-serif;color:#171525;text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Attendance &amp; judgement</div>
           <table cellpadding="0" cellspacing="0" width="100%">
-            ${bullet('Attendance will be taken <strong>two times</strong> during the competition.')}
             ${bullet('<strong>Judgement</strong> will be conducted at the end.')}
             ${bullet('Your <strong>final attendance</strong> will be taken from the <strong>judgement attendance sheet only</strong> &mdash; you must be present at the judgement round.')}
           </table>
@@ -179,7 +175,9 @@ export default async function handler(req, res) {
       return
     }
 
-    const { subject, text, html } = buildCredentialEmail(team)
+    const origin = siteOrigin(req)
+    const logoUrl = origin ? `${origin}/gna-logo.png` : ''
+    const { subject, text, html } = buildCredentialEmail(team, logoUrl)
 
     const info = await transporter().sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,

@@ -32,7 +32,7 @@ export default function Login() {
         <div className="login__brand">
           <div className="brand__mark">A</div>
           <div>
-            <div className="brand__name">Agenticthon</div>
+            <div className="brand__name">AIExplore</div>
             <div className="brand__sub">Admin Console</div>
           </div>
         </div>
@@ -81,7 +81,7 @@ export default function Login() {
           </button>
         </form>
 
-        <div className="login__foot">Agenticthon · LLM&rsquo;s · Gen AI · AI Agent</div>
+        <div className="login__foot">AIExplore · LLM&rsquo;s · Gen AI · AI Agent</div>
       </div>
     </div>
   )

@@ -45,11 +45,11 @@ export default function PortalLogin() {
           />
 
           <span className="pill">
-            <i className="pill__dot" /> {EVENT.date} · {EVENT.venue}
+            <i className="pill__dot" /> {EVENT.date}
           </span>
 
           <h1 className="hero__title">
-            Agentic<span>thon</span>
+            AI<span>Explore</span>
           </h1>
           <p className="hero__lede">
             Sign in with the credentials emailed to you, choose your team&rsquo;s problem statement,
@@ -59,11 +59,11 @@ export default function PortalLogin() {
           <ul className="hero__facts">
             <li>
               <strong>{EVENT.reportTime}</strong>
-              <span>Report at {EVENT.venue}</span>
+              <span>Reporting time</span>
             </li>
             <li>
               <strong>{EVENT.startTime}</strong>
-              <span>Competition starts sharp</span>
+              <span>Competition start time</span>
             </li>
             <li>
               <strong>1 of 1</strong>

@@ -3,9 +3,9 @@ import nodemailer from 'nodemailer'
 const EVENT = {
   name: 'AIExplore 2026',
   date: '23 October 2026',
-  venue: 'LAB 307',
-  reportTime: '9:15 AM',
-  startTime: '9:30 AM',
+  venue: 'TBD',
+  reportTime: '9:00 AM',
+  startTime: 'TBD',
 }
 
 function siteOrigin(req) {
@@ -146,7 +146,7 @@ export function buildCredentialEmail(team, logoUrl) {
       </div>
 
       <div style="padding:16px 24px;background:#faf9fe;border-top:1px solid #e8e6f0;font:400 12px/1.6 Arial,sans-serif;color:#8a87a3;">
-        ${esc(EVENT.name)} Organising Team &middot; ${esc(EVENT.date)} &middot; ${esc(EVENT.venue)}
+        ${esc(EVENT.name)} Organising Team &middot; ${esc(EVENT.date)} &middot; venue TBD
       </div>
     </div>
   </div>`

@@ -36,7 +36,7 @@ export default function PortalLayout() {
       </main>
 
       <footer className="portal__foot">
-        {EVENT.name} · {EVENT.date} · {EVENT.venue} · starts {EVENT.startTime} sharp
+        {EVENT.name} · {EVENT.date} · venue &amp; start time {EVENT.venue}
       </footer>
 
       <ConfirmDialog

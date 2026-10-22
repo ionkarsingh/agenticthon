@@ -2,14 +2,14 @@
 export const EVENT = {
   name: 'AIExplore 2026',
   date: '23 October 2026',
-  venue: 'LAB 307',
-  reportTime: '9:15 AM',
-  startTime: '9:30 AM',
+  venue: 'TBD',
+  reportTime: '9:00 AM',
+  startTime: 'TBD',
 }
 
 export const INSTRUCTIONS = [
-  `Reach ${EVENT.venue} by ${EVENT.reportTime} on ${EVENT.date}.`,
-  `The competition starts at ${EVENT.startTime} sharp.`,
+  `Report by ${EVENT.reportTime} on ${EVENT.date}. Venue to be announced.`,
+  `Competition start time to be announced.`,
   'Bring your own laptops — arrange them in advance.',
   'One team can select only ONE problem statement. Once locked, it cannot be changed.',
   'No other team can select a problem statement your team has already locked.',
